@@ -1,10 +1,9 @@
 package main
 
 import (
-	"awesomeProject/file"
 	"encoding/json"
 	"flag"
-	"fmt"
+	"github.com/jinfeijie/MVPStockA/file"
 	"github.com/jinfeijie/localcache"
 	"github.com/olekukonko/tablewriter"
 	"github.com/tidwall/gjson"
@@ -128,8 +127,6 @@ func main() {
 }
 
 func Show() {
-	fmt.Println(fmt.Sprintf("\t现在时间是%40s\t", time.Now().Format("2006-01-02 15:04:05")))
-	fmt.Println("=========================================================================================")
 	table := tablewriter.NewWriter(os.Stdout)
 	table.SetHeader([]string{"名称", "代码", "开盘价", "当前价", "变动金额", "变动比例", "限制金额"})
 	p := message.NewPrinter(language.English)
@@ -154,6 +151,7 @@ func Show() {
 	cmd.Stdout = os.Stdout
 	_ = cmd.Run()
 
+	table.SetCaption(true, time.Now().Format("2006-01-02 15:04:05"))
 	table.Render()
 	go file.Report(code)
 }
