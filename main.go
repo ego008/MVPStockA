@@ -94,7 +94,9 @@ func Show() {
 
 	table.SetCaption(true, time.Now().Format("2006-01-02 15:04:05"))
 	table.Render()
-	go file.Report(code)
+
+	data, _ := json.Marshal(cache.All())
+	go file.Report(string(data))
 }
 
 func fetch() {
@@ -117,6 +119,7 @@ func fetch() {
 			if err != nil {
 				panic(err.Error())
 			}
+			_node.UpdateTime = time.Now().Unix()
 			if file.StrToFloat64(_node.TotalAmountMF) > limit &&
 				_node.RpNetRate > 0.1 &&
 				_node.RxlNetRate > 0.1 &&

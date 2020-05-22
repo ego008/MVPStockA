@@ -1,4 +1,5 @@
 package file
+
 type Node struct {
 	Name          string  `json:"name"`          // 股票名字
 	Open          string  `json:"open"`          // 开盘价
@@ -56,4 +57,5 @@ type Node struct {
 	Ddjl5         string  `json:"ddjl5"`         // 大单5日净流
 	Ddjl10        string  `json:"ddjl10"`        // 大单10日净流
 	Ddjl20        string  `json:"ddjl20"`        // 大单20日净流
+	UpdateTime    int64  `json:"update_time"`   // 最新更新时间
 }

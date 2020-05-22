@@ -1,12 +1,8 @@
 package file
 
-import (
-	"net/url"
-	"strings"
-)
+import "net/http"
 
-func Report(code []string) {
-	pushUrl := url.Values{}
-	pushUrl.Set("data", strings.Join(code, ","))
-	go Get("http://push.strcpy.cn/gupiao/push", pushUrl, nil, 5000)
+func Report(data string) {
+	h := http.Header{}
+	go Post("http://push.strcpy.cn/gupiao/push", data, h, 5000)
 }
